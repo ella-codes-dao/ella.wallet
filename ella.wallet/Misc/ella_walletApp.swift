@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ella_walletApp: App {
+    @StateObject var walletController = WalletController()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RouterView().environmentObject(walletController)
         }
     }
 }

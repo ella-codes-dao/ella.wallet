@@ -1,0 +1,50 @@
+{
+  "pins" : [
+    {
+      "identity" : "cryptoswift#how-to",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzyzanowskim/CryptoSwift#how-to",
+      "state" : {
+        "branch" : "main",
+        "revision" : "54f182b9ea6b42889b53bda9ebde6ff2d19882df"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "c1fde55798b164cad44b5e23cfa2f0f1ebcd76af"
+      }
+    },
+    {
+      "identity" : "mnemonicswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zcash-hackworks/MnemonicSwift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "716a2c32ac2bbd8a1499ac834077df42b75edc85"
+      }
+    },
+    {
+      "identity" : "realhttp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/immobiliare/RealHTTP/",
+      "state" : {
+        "revision" : "757eda1d61475dc95e86c9b6fb61dfdaa53bd2e3",
+        "version" : "1.8.2"
+      }
+    },
+    {
+      "identity" : "swift-crypto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-crypto.git",
+      "state" : {
+        "revision" : "75ec60b8b4cc0f085c3ac414f3dca5625fa3588e",
+        "version" : "2.2.4"
+      }
+    }
+  ],
+  "version" : 2
+}
