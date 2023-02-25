@@ -20,12 +20,14 @@
 		2BB6276929A6FE4700CF30C2 /* iOSCheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6276829A6FE4700CF30C2 /* iOSCheckboxToggleStyle.swift */; };
 		2BB6276C29A7011100CF30C2 /* MnemonicSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB6276B29A7011100CF30C2 /* MnemonicSwift */; };
 		2BB6277029A7C52100CF30C2 /* CreateWalletProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6276F29A7C52100CF30C2 /* CreateWalletProgressView.swift */; };
-		2BB6277329A7C57F00CF30C2 /* WalletCreationPhases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6277229A7C57F00CF30C2 /* WalletCreationPhases.swift */; };
 		2BB6277629A7E24E00CF30C2 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB6277529A7E24E00CF30C2 /* CryptoSwift */; };
 		2BB6277829A7E41800CF30C2 /* DataToHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6277729A7E41800CF30C2 /* DataToHex.swift */; };
 		2BB6277B29A7E76400CF30C2 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB6277A29A7E76400CF30C2 /* KeychainSwift */; };
 		2BB6277D29A7EAE700CF30C2 /* WalletErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6277C29A7EAE700CF30C2 /* WalletErrors.swift */; };
 		2BB6278029A7F7F400CF30C2 /* RealHTTP in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB6277F29A7F7F400CF30C2 /* RealHTTP */; };
+		2BB6278329A7F8CC00CF30C2 /* GeneralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6278229A7F8CC00CF30C2 /* GeneralConfig.swift */; };
+		2BB6278729A7FBF400CF30C2 /* FlowNetworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6278629A7FBF400CF30C2 /* FlowNetworks.swift */; };
+		2BB6278929A840EF00CF30C2 /* WalletCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6278829A840EF00CF30C2 /* WalletCreation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,9 +44,11 @@
 		2BB6276629A6F87800CF30C2 /* CreateWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWallet.swift; sourceTree = "<group>"; };
 		2BB6276829A6FE4700CF30C2 /* iOSCheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCheckboxToggleStyle.swift; sourceTree = "<group>"; };
 		2BB6276F29A7C52100CF30C2 /* CreateWalletProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWalletProgressView.swift; sourceTree = "<group>"; };
-		2BB6277229A7C57F00CF30C2 /* WalletCreationPhases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreationPhases.swift; sourceTree = "<group>"; };
 		2BB6277729A7E41800CF30C2 /* DataToHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataToHex.swift; sourceTree = "<group>"; };
 		2BB6277C29A7EAE700CF30C2 /* WalletErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletErrors.swift; sourceTree = "<group>"; };
+		2BB6278229A7F8CC00CF30C2 /* GeneralConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralConfig.swift; sourceTree = "<group>"; };
+		2BB6278629A7FBF400CF30C2 /* FlowNetworks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowNetworks.swift; sourceTree = "<group>"; };
+		2BB6278829A840EF00CF30C2 /* WalletCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 		2BB6274329A67E5200CF30C2 /* ella.wallet */ = {
 			isa = PBXGroup;
 			children = (
+				2BB6278129A7F8B900CF30C2 /* Config */,
 				2BB6277129A7C56900CF30C2 /* Models */,
 				2BB6275629A67F4100CF30C2 /* View Models */,
 				2BB6275329A67F0900CF30C2 /* Views */,
@@ -158,10 +163,19 @@
 		2BB6277129A7C56900CF30C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2BB6277229A7C57F00CF30C2 /* WalletCreationPhases.swift */,
 				2BB6277C29A7EAE700CF30C2 /* WalletErrors.swift */,
+				2BB6278629A7FBF400CF30C2 /* FlowNetworks.swift */,
+				2BB6278829A840EF00CF30C2 /* WalletCreation.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2BB6278129A7F8B900CF30C2 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2BB6278229A7F8CC00CF30C2 /* GeneralConfig.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,15 +262,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB6274729A67E5200CF30C2 /* RouterView.swift in Sources */,
+				2BB6278329A7F8CC00CF30C2 /* GeneralConfig.swift in Sources */,
 				2BB6276129A6862500CF30C2 /* WelcomeView.swift in Sources */,
 				2BB6275D29A67FD300CF30C2 /* Color.swift in Sources */,
-				2BB6277329A7C57F00CF30C2 /* WalletCreationPhases.swift in Sources */,
 				2BB6276429A6865800CF30C2 /* WalletTabView.swift in Sources */,
+				2BB6278729A7FBF400CF30C2 /* FlowNetworks.swift in Sources */,
 				2BB6276929A6FE4700CF30C2 /* iOSCheckboxToggleStyle.swift in Sources */,
 				2BB6275F29A6846D00CF30C2 /* WalletController.swift in Sources */,
 				2BB6277829A7E41800CF30C2 /* DataToHex.swift in Sources */,
 				2BB6277029A7C52100CF30C2 /* CreateWalletProgressView.swift in Sources */,
 				2BB6276729A6F87800CF30C2 /* CreateWallet.swift in Sources */,
+				2BB6278929A840EF00CF30C2 /* WalletCreation.swift in Sources */,
 				2BB6274529A67E5200CF30C2 /* ella_walletApp.swift in Sources */,
 				2BB6277D29A7EAE700CF30C2 /* WalletErrors.swift in Sources */,
 			);

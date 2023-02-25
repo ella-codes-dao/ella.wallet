@@ -106,7 +106,9 @@ struct CreateWallet: View {
     }
     
     func createWallet() {
-        walletController.createWallet(password: recoveryPassword)
+        Task {
+            await walletController.createWallet(password: recoveryPassword)
+        }
         alertConfirmation.toggle()
     }
 

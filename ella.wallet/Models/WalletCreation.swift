@@ -1,5 +1,5 @@
 //
-//  WalletCreationPhases.swift
+//  WalletCreation.swift
 //  ella.wallet
 //
 //  Created by BoiseITGuru on 2/23/23.
@@ -14,4 +14,16 @@ enum WalletCreationPhase {
     case creatingFlowAccount
     case walletCreated
     case error
+}
+
+struct WalletCreateRequest: Codable {
+    var recoveryPublicKey: String
+    var accountPublicKey: String
+    var devicePublicKey: String
+}
+
+struct WalletCreateResponse: Codable {
+    var status: String
+    var msg: String?
+    var txId: String?
 }
