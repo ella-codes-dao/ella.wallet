@@ -85,7 +85,6 @@
 
 ### Built With
 
-- [![Next][next.js]][next-url]
 - [![React][react.js]][react-url]
 - [![Vue][vue.js]][vue-url]
 - [![Angular][angular.io]][angular-url]
@@ -144,10 +143,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
+- [x] Wallet creation using recovery key and account/devices keys
+- [ ] Account recovery using recovery key
+- [ ] Wallet Connect integration (FCL Auth/Sign Transactions)
+- [ ] Ability to remove account/device keys from wallet allowing for multi device control access control
+- [ ] USDC "Bridge" Accounts (Integration with the Circle APIs to allow for cross bridge sending and receiving of USDC)
+- [ ] NFT Catalog Integration
+- [ ] Multiple Wallet Support (allow each device/app to support multiple wallets simultaneously)
+- [ ] ella.card (US/EU card program linked to USDC Bridge account)
 
 See the [open issues](https://github.com/ella-codes-dao/ella.wallet/issues) for a full list of proposed features (and known issues).
 
@@ -214,8 +217,6 @@ Project Link: [https://github.com/ella-codes-dao/ella.wallet](https://github.com
 [discord-shield]: https://img.shields.io/discord/123456789?style=for-the-badge
 [discord-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
-[next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[next-url]: https://nextjs.org/
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [react-url]: https://reactjs.org/
 [vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
