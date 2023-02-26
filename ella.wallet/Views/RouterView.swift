@@ -13,13 +13,9 @@ struct RouterView: View {
     var body: some View {
         Group {
             if (walletController.walletInitiliazed) {
-                NavigationStack {
-                    WalletTabView()
-                }
+                WalletTabView()
             } else {
-                NavigationStack {
-                    WelcomeView()
-                }
+                WelcomeView()
             }
         }
     }

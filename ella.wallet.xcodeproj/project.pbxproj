@@ -22,11 +22,9 @@
 		2BB6277029A7C52100CF30C2 /* CreateWalletProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6276F29A7C52100CF30C2 /* CreateWalletProgressView.swift */; };
 		2BB6277629A7E24E00CF30C2 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB6277529A7E24E00CF30C2 /* CryptoSwift */; };
 		2BB6277829A7E41800CF30C2 /* DataToHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6277729A7E41800CF30C2 /* DataToHex.swift */; };
-		2BB6277B29A7E76400CF30C2 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB6277A29A7E76400CF30C2 /* KeychainSwift */; };
 		2BB6277D29A7EAE700CF30C2 /* WalletErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6277C29A7EAE700CF30C2 /* WalletErrors.swift */; };
 		2BB6278029A7F7F400CF30C2 /* RealHTTP in Frameworks */ = {isa = PBXBuildFile; productRef = 2BB6277F29A7F7F400CF30C2 /* RealHTTP */; };
 		2BB6278329A7F8CC00CF30C2 /* GeneralConfig-Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6278229A7F8CC00CF30C2 /* GeneralConfig-Example.swift */; };
-		2BB6278729A7FBF400CF30C2 /* FlowNetworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6278629A7FBF400CF30C2 /* FlowNetworks.swift */; };
 		2BB6278929A840EF00CF30C2 /* WalletCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6278829A840EF00CF30C2 /* WalletCreation.swift */; };
 		2BEF859729AA7B3F00321A4D /* WalletConnect in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF859629AA7B3F00321A4D /* WalletConnect */; };
 		2BEF859929AA7B3F00321A4D /* WalletConnectAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF859829AA7B3F00321A4D /* WalletConnectAuth */; };
@@ -35,6 +33,22 @@
 		2BEF859F29AA7B3F00321A4D /* WalletConnectPush in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF859E29AA7B3F00321A4D /* WalletConnectPush */; };
 		2BEF85A129AA7B3F00321A4D /* WalletConnectRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85A029AA7B3F00321A4D /* WalletConnectRouter */; };
 		2BEF85A329AA7B3F00321A4D /* Web3Wallet in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85A229AA7B3F00321A4D /* Web3Wallet */; };
+		2BEF85A529AA7C2B00321A4D /* GeneralConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85A429AA7C2B00321A4D /* GeneralConfig.swift */; };
+		2BEF85A829AA7EC900321A4D /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85A729AA7EC900321A4D /* Starscream */; };
+		2BEF85AA29AA7EE600321A4D /* DefaultSocketFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85A929AA7EE600321A4D /* DefaultSocketFactory.swift */; };
+		2BEF85AC29AA86D300321A4D /* CustomTabBarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85AB29AA86D300321A4D /* CustomTabBarShape.swift */; };
+		2BEF85B129AA8CB700321A4D /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85B029AA8CB700321A4D /* DashboardView.swift */; };
+		2BEF85B329AA967900321A4D /* DashboardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85B229AA967900321A4D /* DashboardCardView.swift */; };
+		2BEF85B629AA9CDA00321A4D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85B529AA9CDA00321A4D /* SettingsView.swift */; };
+		2BEF85BE29AAAF5F00321A4D /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85BD29AAAF5F00321A4D /* Flow */; };
+		2BEF85C029AADB1700321A4D /* FINDProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85BF29AADB1700321A4D /* FINDProfile.swift */; };
+		2BEF85C229AADB9700321A4D /* FIND_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85C129AADB9700321A4D /* FIND_Swift.swift */; };
+		2BEF85C529AADBDE00321A4D /* Cadence_Scripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85C429AADBDE00321A4D /* Cadence_Scripts.swift */; };
+		2BEF85C729AAE53400321A4D /* Cadence_Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85C629AAE53400321A4D /* Cadence_Transactions.swift */; };
+		2BEF85C929AAEB4A00321A4D /* RoundSpeceficCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85C829AAEB4A00321A4D /* RoundSpeceficCorners.swift */; };
+		2BEF85CC29AAEE5F00321A4D /* CreateFindProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85CB29AAEE5F00321A4D /* CreateFindProfile.swift */; };
+		2BEF85D029AAFDC200321A4D /* EllaSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85CF29AAFDC200321A4D /* EllaSigner.swift */; };
+		2BEF85D829AB502000321A4D /* CryptoKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85D729AB502000321A4D /* CryptoKeychain */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,8 +68,21 @@
 		2BB6277729A7E41800CF30C2 /* DataToHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataToHex.swift; sourceTree = "<group>"; };
 		2BB6277C29A7EAE700CF30C2 /* WalletErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletErrors.swift; sourceTree = "<group>"; };
 		2BB6278229A7F8CC00CF30C2 /* GeneralConfig-Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralConfig-Example.swift"; sourceTree = "<group>"; };
-		2BB6278629A7FBF400CF30C2 /* FlowNetworks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowNetworks.swift; sourceTree = "<group>"; };
 		2BB6278829A840EF00CF30C2 /* WalletCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCreation.swift; sourceTree = "<group>"; };
+		2BEF85A429AA7C2B00321A4D /* GeneralConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralConfig.swift; sourceTree = "<group>"; };
+		2BEF85A929AA7EE600321A4D /* DefaultSocketFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSocketFactory.swift; sourceTree = "<group>"; };
+		2BEF85AB29AA86D300321A4D /* CustomTabBarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarShape.swift; sourceTree = "<group>"; };
+		2BEF85B029AA8CB700321A4D /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		2BEF85B229AA967900321A4D /* DashboardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardView.swift; sourceTree = "<group>"; };
+		2BEF85B529AA9CDA00321A4D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2BEF85BF29AADB1700321A4D /* FINDProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FINDProfile.swift; sourceTree = "<group>"; };
+		2BEF85C129AADB9700321A4D /* FIND_Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIND_Swift.swift; sourceTree = "<group>"; };
+		2BEF85C429AADBDE00321A4D /* Cadence_Scripts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cadence_Scripts.swift; sourceTree = "<group>"; };
+		2BEF85C629AAE53400321A4D /* Cadence_Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cadence_Transactions.swift; sourceTree = "<group>"; };
+		2BEF85C829AAEB4A00321A4D /* RoundSpeceficCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSpeceficCorners.swift; sourceTree = "<group>"; };
+		2BEF85CB29AAEE5F00321A4D /* CreateFindProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFindProfile.swift; sourceTree = "<group>"; };
+		2BEF85CF29AAFDC200321A4D /* EllaSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllaSigner.swift; sourceTree = "<group>"; };
+		2BEF85D629AB501500321A4D /* CryptoKeychain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CryptoKeychain; path = ../../../../BoiseITGuru/CryptoKeychain; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +90,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BEF85D829AB502000321A4D /* CryptoKeychain in Frameworks */,
 				2BB6278029A7F7F400CF30C2 /* RealHTTP in Frameworks */,
 				2BEF85A129AA7B3F00321A4D /* WalletConnectRouter in Frameworks */,
 				2BEF859D29AA7B3F00321A4D /* WalletConnectPairing in Frameworks */,
 				2BEF859729AA7B3F00321A4D /* WalletConnect in Frameworks */,
+				2BEF85BE29AAAF5F00321A4D /* Flow in Frameworks */,
 				2BEF85A329AA7B3F00321A4D /* Web3Wallet in Frameworks */,
 				2BEF859B29AA7B3F00321A4D /* WalletConnectNetworking in Frameworks */,
 				2BEF859929AA7B3F00321A4D /* WalletConnectAuth in Frameworks */,
 				2BEF859F29AA7B3F00321A4D /* WalletConnectPush in Frameworks */,
-				2BB6277B29A7E76400CF30C2 /* KeychainSwift in Frameworks */,
 				2BB6276C29A7011100CF30C2 /* MnemonicSwift in Frameworks */,
 				2BB6277629A7E24E00CF30C2 /* CryptoSwift in Frameworks */,
+				2BEF85A829AA7EC900321A4D /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,8 +112,10 @@
 		2BB6273829A67E5200CF30C2 = {
 			isa = PBXGroup;
 			children = (
+				2BEF85D129AB18E700321A4D /* Packages */,
 				2BB6274329A67E5200CF30C2 /* ella.wallet */,
 				2BB6274229A67E5200CF30C2 /* Products */,
+				2BEF85D329AB190800321A4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,9 +181,13 @@
 		2BB6275929A67FC000CF30C2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2BEF85C329AADBC000321A4D /* FIND */,
+				2BEF85A929AA7EE600321A4D /* DefaultSocketFactory.swift */,
 				2BB6275B29A67FD300CF30C2 /* Color.swift */,
 				2BB6276829A6FE4700CF30C2 /* iOSCheckboxToggleStyle.swift */,
 				2BB6277729A7E41800CF30C2 /* DataToHex.swift */,
+				2BEF85AB29AA86D300321A4D /* CustomTabBarShape.swift */,
+				2BEF85C829AAEB4A00321A4D /* RoundSpeceficCorners.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -160,6 +195,8 @@
 		2BB6276229A6863000CF30C2 /* Wallet Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BEF85B429AA9CC900321A4D /* Settings Views */,
+				2BEF85AF29AA8C9E00321A4D /* Dashboard Views */,
 				2BB6276329A6865800CF30C2 /* WalletTabView.swift */,
 			);
 			path = "Wallet Views";
@@ -178,8 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				2BB6277C29A7EAE700CF30C2 /* WalletErrors.swift */,
-				2BB6278629A7FBF400CF30C2 /* FlowNetworks.swift */,
 				2BB6278829A840EF00CF30C2 /* WalletCreation.swift */,
+				2BEF85BF29AADB1700321A4D /* FINDProfile.swift */,
+				2BEF85CF29AAFDC200321A4D /* EllaSigner.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,8 +226,60 @@
 			isa = PBXGroup;
 			children = (
 				2BB6278229A7F8CC00CF30C2 /* GeneralConfig-Example.swift */,
+				2BEF85A429AA7C2B00321A4D /* GeneralConfig.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		2BEF85AF29AA8C9E00321A4D /* Dashboard Views */ = {
+			isa = PBXGroup;
+			children = (
+				2BEF85B029AA8CB700321A4D /* DashboardView.swift */,
+				2BEF85B229AA967900321A4D /* DashboardCardView.swift */,
+			);
+			path = "Dashboard Views";
+			sourceTree = "<group>";
+		};
+		2BEF85B429AA9CC900321A4D /* Settings Views */ = {
+			isa = PBXGroup;
+			children = (
+				2BEF85CA29AAEE3C00321A4D /* FIND */,
+				2BEF85B529AA9CDA00321A4D /* SettingsView.swift */,
+			);
+			path = "Settings Views";
+			sourceTree = "<group>";
+		};
+		2BEF85C329AADBC000321A4D /* FIND */ = {
+			isa = PBXGroup;
+			children = (
+				2BEF85C629AAE53400321A4D /* Cadence_Transactions.swift */,
+				2BEF85C429AADBDE00321A4D /* Cadence_Scripts.swift */,
+				2BEF85C129AADB9700321A4D /* FIND_Swift.swift */,
+			);
+			path = FIND;
+			sourceTree = "<group>";
+		};
+		2BEF85CA29AAEE3C00321A4D /* FIND */ = {
+			isa = PBXGroup;
+			children = (
+				2BEF85CB29AAEE5F00321A4D /* CreateFindProfile.swift */,
+			);
+			path = FIND;
+			sourceTree = "<group>";
+		};
+		2BEF85D129AB18E700321A4D /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				2BEF85D629AB501500321A4D /* CryptoKeychain */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		2BEF85D329AB190800321A4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,7 +301,6 @@
 			packageProductDependencies = (
 				2BB6276B29A7011100CF30C2 /* MnemonicSwift */,
 				2BB6277529A7E24E00CF30C2 /* CryptoSwift */,
-				2BB6277A29A7E76400CF30C2 /* KeychainSwift */,
 				2BB6277F29A7F7F400CF30C2 /* RealHTTP */,
 				2BEF859629AA7B3F00321A4D /* WalletConnect */,
 				2BEF859829AA7B3F00321A4D /* WalletConnectAuth */,
@@ -220,6 +309,9 @@
 				2BEF859E29AA7B3F00321A4D /* WalletConnectPush */,
 				2BEF85A029AA7B3F00321A4D /* WalletConnectRouter */,
 				2BEF85A229AA7B3F00321A4D /* Web3Wallet */,
+				2BEF85A729AA7EC900321A4D /* Starscream */,
+				2BEF85BD29AAAF5F00321A4D /* Flow */,
+				2BEF85D729AB502000321A4D /* CryptoKeychain */,
 			);
 			productName = ella.wallet;
 			productReference = 2BB6274129A67E5200CF30C2 /* ella.wallet.app */;
@@ -252,9 +344,10 @@
 			packageReferences = (
 				2BB6276A29A7011100CF30C2 /* XCRemoteSwiftPackageReference "MnemonicSwift" */,
 				2BB6277429A7E24E00CF30C2 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
-				2BB6277929A7E76400CF30C2 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				2BB6277E29A7F7F400CF30C2 /* XCRemoteSwiftPackageReference "RealHTTP" */,
 				2BEF859529AA7B3F00321A4D /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */,
+				2BEF85A629AA7EC900321A4D /* XCRemoteSwiftPackageReference "starscream" */,
+				2BEF85BC29AAAF5F00321A4D /* XCRemoteSwiftPackageReference "flow-swift" */,
 			);
 			productRefGroup = 2BB6274229A67E5200CF30C2 /* Products */;
 			projectDirPath = "";
@@ -283,19 +376,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BEF85AC29AA86D300321A4D /* CustomTabBarShape.swift in Sources */,
 				2BB6274729A67E5200CF30C2 /* RouterView.swift in Sources */,
 				2BB6278329A7F8CC00CF30C2 /* GeneralConfig-Example.swift in Sources */,
 				2BB6276129A6862500CF30C2 /* WelcomeView.swift in Sources */,
+				2BEF85C529AADBDE00321A4D /* Cadence_Scripts.swift in Sources */,
+				2BEF85B329AA967900321A4D /* DashboardCardView.swift in Sources */,
+				2BEF85B629AA9CDA00321A4D /* SettingsView.swift in Sources */,
 				2BB6275D29A67FD300CF30C2 /* Color.swift in Sources */,
+				2BEF85CC29AAEE5F00321A4D /* CreateFindProfile.swift in Sources */,
 				2BB6276429A6865800CF30C2 /* WalletTabView.swift in Sources */,
-				2BB6278729A7FBF400CF30C2 /* FlowNetworks.swift in Sources */,
 				2BB6276929A6FE4700CF30C2 /* iOSCheckboxToggleStyle.swift in Sources */,
 				2BB6275F29A6846D00CF30C2 /* WalletController.swift in Sources */,
+				2BEF85C229AADB9700321A4D /* FIND_Swift.swift in Sources */,
 				2BB6277829A7E41800CF30C2 /* DataToHex.swift in Sources */,
 				2BB6277029A7C52100CF30C2 /* CreateWalletProgressView.swift in Sources */,
 				2BB6276729A6F87800CF30C2 /* CreateWallet.swift in Sources */,
+				2BEF85AA29AA7EE600321A4D /* DefaultSocketFactory.swift in Sources */,
+				2BEF85B129AA8CB700321A4D /* DashboardView.swift in Sources */,
 				2BB6278929A840EF00CF30C2 /* WalletCreation.swift in Sources */,
 				2BB6274529A67E5200CF30C2 /* ella_walletApp.swift in Sources */,
+				2BEF85C929AAEB4A00321A4D /* RoundSpeceficCorners.swift in Sources */,
+				2BEF85C729AAE53400321A4D /* Cadence_Transactions.swift in Sources */,
+				2BEF85A529AA7C2B00321A4D /* GeneralConfig.swift in Sources */,
+				2BEF85D029AAFDC200321A4D /* EllaSigner.swift in Sources */,
+				2BEF85C029AADB1700321A4D /* FINDProfile.swift in Sources */,
 				2BB6277D29A7EAE700CF30C2 /* WalletErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,14 +620,6 @@
 				kind = branch;
 			};
 		};
-		2BB6277929A7E76400CF30C2 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		2BB6277E29A7F7F400CF30C2 /* XCRemoteSwiftPackageReference "RealHTTP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/immobiliare/RealHTTP/";
@@ -539,6 +636,22 @@
 				kind = branch;
 			};
 		};
+		2BEF85A629AA7EC900321A4D /* XCRemoteSwiftPackageReference "starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		2BEF85BC29AAAF5F00321A4D /* XCRemoteSwiftPackageReference "flow-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Outblock/flow-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -551,11 +664,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BB6277429A7E24E00CF30C2 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
-		};
-		2BB6277A29A7E76400CF30C2 /* KeychainSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2BB6277929A7E76400CF30C2 /* XCRemoteSwiftPackageReference "keychain-swift" */;
-			productName = KeychainSwift;
 		};
 		2BB6277F29A7F7F400CF30C2 /* RealHTTP */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -596,6 +704,20 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BEF859529AA7B3F00321A4D /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */;
 			productName = Web3Wallet;
+		};
+		2BEF85A729AA7EC900321A4D /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BEF85A629AA7EC900321A4D /* XCRemoteSwiftPackageReference "starscream" */;
+			productName = Starscream;
+		};
+		2BEF85BD29AAAF5F00321A4D /* Flow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BEF85BC29AAAF5F00321A4D /* XCRemoteSwiftPackageReference "flow-swift" */;
+			productName = Flow;
+		};
+		2BEF85D729AB502000321A4D /* CryptoKeychain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CryptoKeychain;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

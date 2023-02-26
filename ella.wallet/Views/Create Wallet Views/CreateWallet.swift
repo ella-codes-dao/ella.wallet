@@ -91,7 +91,7 @@ struct CreateWallet: View {
             .padding(.top, 20)
             .shadow(color: .white.opacity(0.25), radius: 8, y: 2)
             .disabled(!checkConfirmation || recoveryPassword.isEmpty)
-            .alert("Important - The Recovery Phrase WILL NOT be shown again, ensure you have saved it in a secure location before proceeding!", isPresented: $showConfirmationAlert) {
+            .alert("Important! \n\n Your Recovery Phrase WILL NOT be shown again, ensure you have saved it in a secure location before proceeding!", isPresented: $showConfirmationAlert) {
                 Button("OK", role: .cancel) { createWallet() }
                 Button("Go Back", role: .destructive) { checkConfirmation.toggle() }
             }

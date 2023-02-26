@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "bigint",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/attaswift/BigInt.git",
+      "state" : {
+        "revision" : "0ed110f7555c34ff468e72e1686e59721f2b0da6",
+        "version" : "5.3.0"
+      }
+    },
+    {
       "identity" : "cryptoswift#how-to",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzyzanowskim/CryptoSwift#how-to",
@@ -10,12 +19,12 @@
       }
     },
     {
-      "identity" : "keychain-swift",
+      "identity" : "flow-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "location" : "https://github.com/outblock/flow-swift.git",
       "state" : {
-        "branch" : "master",
-        "revision" : "c1fde55798b164cad44b5e23cfa2f0f1ebcd76af"
+        "revision" : "650470ddffc9a552aaa0484e042d206916a438b3",
+        "version" : "0.3.3"
       }
     },
     {
@@ -34,6 +43,15 @@
       "state" : {
         "revision" : "757eda1d61475dc95e86c9b6fb61dfdaa53bd2e3",
         "version" : "1.8.2"
+      }
+    },
+    {
+      "identity" : "starscream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daltoniam/starscream",
+      "state" : {
+        "revision" : "df8d82047f6654d8e4b655d1b1525c64e1059d21",
+        "version" : "4.0.4"
       }
     },
     {

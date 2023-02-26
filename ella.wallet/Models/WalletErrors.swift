@@ -12,5 +12,7 @@ enum WalletCreationError: Error {
     case accountKeyCreationError
     case deviceKeyCreationError
     case unableToGetDeviceID
-    case errorContactingAPI
+    case apiConntectionError
+    case accountKeySaveError
+    case deviceKeySaveError
 }

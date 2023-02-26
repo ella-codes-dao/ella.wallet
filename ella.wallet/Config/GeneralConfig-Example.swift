@@ -7,4 +7,4 @@
 
 import Foundation
 
-let EllaBackendBaseURL = "http://10.25.50.167:8090"
+//let EllaBackendBaseURL = "http://10.25.50.167:8090"
