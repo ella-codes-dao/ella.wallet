@@ -49,6 +49,16 @@
 		2BEF85CC29AAEE5F00321A4D /* CreateFindProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85CB29AAEE5F00321A4D /* CreateFindProfile.swift */; };
 		2BEF85D029AAFDC200321A4D /* EllaSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85CF29AAFDC200321A4D /* EllaSigner.swift */; };
 		2BEF85D829AB502000321A4D /* CryptoKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85D729AB502000321A4D /* CryptoKeychain */; };
+		2BEF85E929AC5ABB00321A4D /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85E829AC5ABB00321A4D /* QRCodeView.swift */; };
+		2BEF85EB29AC6A3800321A4D /* FlowWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85EA29AC6A3800321A4D /* FlowWallet.swift */; };
+		2BEF85F029AD282200321A4D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85EF29AD282200321A4D /* Realm */; };
+		2BEF85F229AD282200321A4D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF85F129AD282200321A4D /* RealmSwift */; };
+		2BEF85F629AD2BFD00321A4D /* SupportedToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85F529AD2BFD00321A4D /* SupportedToken.swift */; };
+		2BEF85F929AD300C00321A4D /* TokenImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BEF85F829AD300C00321A4D /* TokenImages.xcassets */; };
+		2BEF85FB29AD4F8100321A4D /* TokenBalanceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF85FA29AD4F8100321A4D /* TokenBalanceCardView.swift */; };
+		2BEF860129AD5BF700321A4D /* SendCryptoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF860029AD5BF700321A4D /* SendCryptoView.swift */; };
+		2BEF860329AD649900321A4D /* IPFSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF860229AD649900321A4D /* IPFSImage.swift */; };
+		2BEF860629AD652900321A4D /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2BEF860529AD652900321A4D /* CachedAsyncImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +93,15 @@
 		2BEF85CB29AAEE5F00321A4D /* CreateFindProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFindProfile.swift; sourceTree = "<group>"; };
 		2BEF85CF29AAFDC200321A4D /* EllaSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllaSigner.swift; sourceTree = "<group>"; };
 		2BEF85D629AB501500321A4D /* CryptoKeychain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CryptoKeychain; path = ../../../../BoiseITGuru/CryptoKeychain; sourceTree = "<group>"; };
+		2BEF85E829AC5ABB00321A4D /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		2BEF85EA29AC6A3800321A4D /* FlowWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowWallet.swift; sourceTree = "<group>"; };
+		2BEF85EC29AC8A5D00321A4D /* ella-wallet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ella-wallet-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2BEF85ED29AC8AB100321A4D /* ella.wallet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ella.wallet.entitlements; sourceTree = "<group>"; };
+		2BEF85F529AD2BFD00321A4D /* SupportedToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedToken.swift; sourceTree = "<group>"; };
+		2BEF85F829AD300C00321A4D /* TokenImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TokenImages.xcassets; sourceTree = "<group>"; };
+		2BEF85FA29AD4F8100321A4D /* TokenBalanceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenBalanceCardView.swift; sourceTree = "<group>"; };
+		2BEF860029AD5BF700321A4D /* SendCryptoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCryptoView.swift; sourceTree = "<group>"; };
+		2BEF860229AD649900321A4D /* IPFSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPFSImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,13 +109,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BEF85F029AD282200321A4D /* Realm in Frameworks */,
 				2BEF85D829AB502000321A4D /* CryptoKeychain in Frameworks */,
 				2BB6278029A7F7F400CF30C2 /* RealHTTP in Frameworks */,
+				2BEF85F229AD282200321A4D /* RealmSwift in Frameworks */,
 				2BEF85A129AA7B3F00321A4D /* WalletConnectRouter in Frameworks */,
 				2BEF859D29AA7B3F00321A4D /* WalletConnectPairing in Frameworks */,
 				2BEF859729AA7B3F00321A4D /* WalletConnect in Frameworks */,
 				2BEF85BE29AAAF5F00321A4D /* Flow in Frameworks */,
 				2BEF85A329AA7B3F00321A4D /* Web3Wallet in Frameworks */,
+				2BEF860629AD652900321A4D /* CachedAsyncImage in Frameworks */,
 				2BEF859B29AA7B3F00321A4D /* WalletConnectNetworking in Frameworks */,
 				2BEF859929AA7B3F00321A4D /* WalletConnectAuth in Frameworks */,
 				2BEF859F29AA7B3F00321A4D /* WalletConnectPush in Frameworks */,
@@ -130,6 +152,8 @@
 		2BB6274329A67E5200CF30C2 /* ella.wallet */ = {
 			isa = PBXGroup;
 			children = (
+				2BEF85ED29AC8AB100321A4D /* ella.wallet.entitlements */,
+				2BEF85EC29AC8A5D00321A4D /* ella-wallet-Info.plist */,
 				2BB6278129A7F8B900CF30C2 /* Config */,
 				2BB6277129A7C56900CF30C2 /* Models */,
 				2BB6275629A67F4100CF30C2 /* View Models */,
@@ -155,6 +179,7 @@
 				2BB6274429A67E5200CF30C2 /* ella_walletApp.swift */,
 				2BB6274829A67E5300CF30C2 /* Assets.xcassets */,
 				2BB6275729A67F8900CF30C2 /* Colors.xcassets */,
+				2BEF85F829AD300C00321A4D /* TokenImages.xcassets */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -181,10 +206,12 @@
 		2BB6275929A67FC000CF30C2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2BEF85E529AC5A0F00321A4D /* QR Codes */,
 				2BEF85C329AADBC000321A4D /* FIND */,
 				2BEF85A929AA7EE600321A4D /* DefaultSocketFactory.swift */,
 				2BB6275B29A67FD300CF30C2 /* Color.swift */,
 				2BB6276829A6FE4700CF30C2 /* iOSCheckboxToggleStyle.swift */,
+				2BEF860229AD649900321A4D /* IPFSImage.swift */,
 				2BB6277729A7E41800CF30C2 /* DataToHex.swift */,
 				2BEF85AB29AA86D300321A4D /* CustomTabBarShape.swift */,
 				2BEF85C829AAEB4A00321A4D /* RoundSpeceficCorners.swift */,
@@ -214,10 +241,12 @@
 		2BB6277129A7C56900CF30C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2BEF85F729AD2C0200321A4D /* DB Models */,
 				2BB6277C29A7EAE700CF30C2 /* WalletErrors.swift */,
 				2BB6278829A840EF00CF30C2 /* WalletCreation.swift */,
 				2BEF85BF29AADB1700321A4D /* FINDProfile.swift */,
 				2BEF85CF29AAFDC200321A4D /* EllaSigner.swift */,
+				2BEF85EA29AC6A3800321A4D /* FlowWallet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,6 +265,8 @@
 			children = (
 				2BEF85B029AA8CB700321A4D /* DashboardView.swift */,
 				2BEF85B229AA967900321A4D /* DashboardCardView.swift */,
+				2BEF85FA29AD4F8100321A4D /* TokenBalanceCardView.swift */,
+				2BEF860029AD5BF700321A4D /* SendCryptoView.swift */,
 			);
 			path = "Dashboard Views";
 			sourceTree = "<group>";
@@ -282,6 +313,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2BEF85E529AC5A0F00321A4D /* QR Codes */ = {
+			isa = PBXGroup;
+			children = (
+				2BEF85E829AC5ABB00321A4D /* QRCodeView.swift */,
+			);
+			path = "QR Codes";
+			sourceTree = "<group>";
+		};
+		2BEF85F729AD2C0200321A4D /* DB Models */ = {
+			isa = PBXGroup;
+			children = (
+				2BEF85F529AD2BFD00321A4D /* SupportedToken.swift */,
+			);
+			path = "DB Models";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,6 +359,9 @@
 				2BEF85A729AA7EC900321A4D /* Starscream */,
 				2BEF85BD29AAAF5F00321A4D /* Flow */,
 				2BEF85D729AB502000321A4D /* CryptoKeychain */,
+				2BEF85EF29AD282200321A4D /* Realm */,
+				2BEF85F129AD282200321A4D /* RealmSwift */,
+				2BEF860529AD652900321A4D /* CachedAsyncImage */,
 			);
 			productName = ella.wallet;
 			productReference = 2BB6274129A67E5200CF30C2 /* ella.wallet.app */;
@@ -348,6 +398,8 @@
 				2BEF859529AA7B3F00321A4D /* XCRemoteSwiftPackageReference "WalletConnectSwiftV2" */,
 				2BEF85A629AA7EC900321A4D /* XCRemoteSwiftPackageReference "starscream" */,
 				2BEF85BC29AAAF5F00321A4D /* XCRemoteSwiftPackageReference "flow-swift" */,
+				2BEF85EE29AD282200321A4D /* XCRemoteSwiftPackageReference "realm-swift" */,
+				2BEF860429AD652900321A4D /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 			);
 			productRefGroup = 2BB6274229A67E5200CF30C2 /* Products */;
 			projectDirPath = "";
@@ -366,6 +418,7 @@
 				2BB6275829A67F8900CF30C2 /* Colors.xcassets in Resources */,
 				2BB6274C29A67E5300CF30C2 /* Preview Assets.xcassets in Resources */,
 				2BB6274929A67E5300CF30C2 /* Assets.xcassets in Resources */,
+				2BEF85F929AD300C00321A4D /* TokenImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,9 +433,11 @@
 				2BB6274729A67E5200CF30C2 /* RouterView.swift in Sources */,
 				2BB6278329A7F8CC00CF30C2 /* GeneralConfig-Example.swift in Sources */,
 				2BB6276129A6862500CF30C2 /* WelcomeView.swift in Sources */,
+				2BEF85F629AD2BFD00321A4D /* SupportedToken.swift in Sources */,
 				2BEF85C529AADBDE00321A4D /* Cadence_Scripts.swift in Sources */,
 				2BEF85B329AA967900321A4D /* DashboardCardView.swift in Sources */,
 				2BEF85B629AA9CDA00321A4D /* SettingsView.swift in Sources */,
+				2BEF85E929AC5ABB00321A4D /* QRCodeView.swift in Sources */,
 				2BB6275D29A67FD300CF30C2 /* Color.swift in Sources */,
 				2BEF85CC29AAEE5F00321A4D /* CreateFindProfile.swift in Sources */,
 				2BB6276429A6865800CF30C2 /* WalletTabView.swift in Sources */,
@@ -391,6 +446,7 @@
 				2BEF85C229AADB9700321A4D /* FIND_Swift.swift in Sources */,
 				2BB6277829A7E41800CF30C2 /* DataToHex.swift in Sources */,
 				2BB6277029A7C52100CF30C2 /* CreateWalletProgressView.swift in Sources */,
+				2BEF85EB29AC6A3800321A4D /* FlowWallet.swift in Sources */,
 				2BB6276729A6F87800CF30C2 /* CreateWallet.swift in Sources */,
 				2BEF85AA29AA7EE600321A4D /* DefaultSocketFactory.swift in Sources */,
 				2BEF85B129AA8CB700321A4D /* DashboardView.swift in Sources */,
@@ -398,10 +454,13 @@
 				2BB6274529A67E5200CF30C2 /* ella_walletApp.swift in Sources */,
 				2BEF85C929AAEB4A00321A4D /* RoundSpeceficCorners.swift in Sources */,
 				2BEF85C729AAE53400321A4D /* Cadence_Transactions.swift in Sources */,
+				2BEF85FB29AD4F8100321A4D /* TokenBalanceCardView.swift in Sources */,
 				2BEF85A529AA7C2B00321A4D /* GeneralConfig.swift in Sources */,
 				2BEF85D029AAFDC200321A4D /* EllaSigner.swift in Sources */,
 				2BEF85C029AADB1700321A4D /* FINDProfile.swift in Sources */,
 				2BB6277D29A7EAE700CF30C2 /* WalletErrors.swift in Sources */,
+				2BEF860129AD5BF700321A4D /* SendCryptoView.swift in Sources */,
+				2BEF860329AD649900321A4D /* IPFSImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,12 +586,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ella.wallet/ella.wallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ella.wallet/Preview Content\"";
-				DEVELOPMENT_TEAM = MUTAYL233D;
+				DEVELOPMENT_TEAM = Q67CC4F7S9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ella-wallet-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used to scan QR Codes for adding new devices to your wallet";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -543,7 +605,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "codes.ella.ella-wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.ella.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -556,12 +618,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ella.wallet/ella.wallet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ella.wallet/Preview Content\"";
-				DEVELOPMENT_TEAM = MUTAYL233D;
+				DEVELOPMENT_TEAM = Q67CC4F7S9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ella-wallet-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used to scan QR Codes for adding new devices to your wallet";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -572,7 +637,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "codes.ella.ella-wallet";
+				PRODUCT_BUNDLE_IDENTIFIER = codes.ella.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -652,6 +717,22 @@
 				minimumVersion = 0.3.3;
 			};
 		};
+		2BEF85EE29AD282200321A4D /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.36.0;
+			};
+		};
+		2BEF860429AD652900321A4D /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -718,6 +799,21 @@
 		2BEF85D729AB502000321A4D /* CryptoKeychain */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CryptoKeychain;
+		};
+		2BEF85EF29AD282200321A4D /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BEF85EE29AD282200321A4D /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		2BEF85F129AD282200321A4D /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BEF85EE29AD282200321A4D /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		2BEF860529AD652900321A4D /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BEF860429AD652900321A4D /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

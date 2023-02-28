@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FINDProfile: Decodable, Hashable {
+public struct FINDProfile: Codable, Hashable {
     public var findName: String
     public var name: String
     public var description: String

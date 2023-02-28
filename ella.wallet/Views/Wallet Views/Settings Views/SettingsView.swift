@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct SettingsView: View {
     @EnvironmentObject var walletController: WalletController
@@ -14,12 +15,34 @@ struct SettingsView: View {
         NavigationStack {
             VStack {
                 HStack {
-                    Image(systemName: "person.circle")
-                        .resizable()
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 66.0, height: 66.0)
+                    if walletController.findProfile?.avatar != nil {
+                        CachedAsyncImage(url: URL(string: walletController.findProfile?.avatar ?? ""), scale: 2) { image in
+                            image
+                                .resizable()
+                                .renderingMode(.template)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 66.0, height: 66.0)
+                        } placeholder: {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                        }
+                    } else {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .renderingMode(.template)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 66.0, height: 66.0)
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text(walletController.findProfile?.name ?? walletController.walletAddress)
+                            .font(.title2)
+                            .lineLimit(1)
+                        Text("Some other info probably")
+                            .font(.subheadline)
+                    }
                 }
+                .padding(.horizontal, 30)
                 
                 List {
                     Button(action: { walletController.signOut() }) {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WalletTabView: View {
-    var tabs = ["wallet", "chain", "ellaSF", "settingsGear"]
+    var tabs = ["wallet", "ellaCard", "nft", "dapp"]
     
     @State var selectedTab = "wallet"
     
@@ -22,20 +22,44 @@ struct WalletTabView: View {
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
-            TabView(selection: $selectedTab) {
-                DashboardView()
-                    .tag("wallet")
+            VStack(alignment: .leading) {
+                HStack {
+                    Button(action: { }) {
+                        Image("settingsGear")
+                            .resizable()
+                            .renderingMode(.template)
+                            .imageScale(.large)
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 22.0, height: 22.0)
+                            .foregroundColor(.walletPrimary)
+                    }
+                    
+                    Spacer ()
+                    
+                    Text("ella.wallet")
+                }
+                .padding(.top, 50)
+                .padding(.horizontal, 20)
+                .padding(.bottom, 10)
                 
-                Text("Bridge View")
-                    .tag("chain")
-                
-                Text("ella.card View")
-                    .tag("ellaSF")
-                
-                SettingsView()
-                    .tag("settingsGear")
+                TabView(selection: $selectedTab) {
+                    DashboardView()
+                        .tag("wallet")
+                    
+                    Text("ella.card View")
+                        .tag("ellaCard")
+                    
+                    Text("NFT View")
+                        .tag("nft")
+                    
+                    Text("DAPP View")
+                        .tag("dapp")
+                    
+//                    SettingsView()
+//                        .tag("settingsGear")
+                }
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
             
             // custom tab bar
             HStack(spacing: 0) {
@@ -47,17 +71,30 @@ struct WalletTabView: View {
                                 xAxis = reader.frame(in: .global).minX
                             }
                         }, label: {
-                            Image(image)
-                                .resizable()
-                                .renderingMode(.template)
-                                .imageScale(.large)
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 22.0, height: 22.0)
-                                .foregroundColor(selectedTab == image ? .walletPrimary : .gray)
-                                .padding(selectedTab == image ? 15 : 0)
-                                .background(Color.lightBackground.opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
-                                .matchedGeometryEffect(id: image, in: animation)
-                                .offset(x: selectedTab == image ? -10 : 0, y: selectedTab == image ? -50 : 0)
+                            if image == "nft" {
+                                Image(image)
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 38.0, height: 38.0)
+                                    .foregroundColor(selectedTab == image ? .walletPrimary : .gray)
+                                    .padding(selectedTab == image ? 7 : 0)
+                                    .background(Color.lightBackground.opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
+                                    .matchedGeometryEffect(id: image, in: animation)
+                                    .offset(x: selectedTab == image ? -10 : 0, y: selectedTab == image ? -50 : -7)
+                            } else {
+                                Image(image)
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .imageScale(.large)
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 22.0, height: 22.0)
+                                    .foregroundColor(selectedTab == image ? .walletPrimary : .gray)
+                                    .padding(selectedTab == image ? 15 : 0)
+                                    .background(Color.lightBackground.opacity(selectedTab == image ? 1 : 0).clipShape(Circle()))
+                                    .matchedGeometryEffect(id: image, in: animation)
+                                    .offset(x: selectedTab == image ? -10 : 0, y: selectedTab == image ? -50 : 0)
+                            }
                         })
                         .onAppear(perform: {
                             if image == tabs.first {

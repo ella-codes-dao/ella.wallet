@@ -13,7 +13,7 @@ struct ella_walletApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RouterView().environmentObject(walletController)
+            RouterView().environmentObject(walletController).preferredColorScheme(.dark)
         }
     }
 }

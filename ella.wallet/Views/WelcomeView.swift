@@ -18,17 +18,6 @@ struct WelcomeView: View {
                 Color.grey100
                     .edgesIgnoringSafeArea(.all)
                 
-                VStack {
-                    Spacer()
-                    
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                    
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
-                
                 VStack(spacing: 0) {
                     Text("Welcome")
                         .foregroundColor(.grey8)
@@ -43,10 +32,23 @@ struct WelcomeView: View {
                     
                     Spacer()
                     
+                    Image("logo-icon")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 150)
+                        .padding(.bottom, 20)
+                    
+                    Image("logo-text")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.horizontal, 30)
+                    
+                    Spacer()
+                    
                     Button(action: { createWallet() }, label: {
                         Text("Create A New Wallet")
                             .frame(maxWidth: .infinity)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                             .padding(.vertical, 15)
                             .background(
@@ -63,7 +65,7 @@ struct WelcomeView: View {
                     } label: {
                         Text("Link To Existing Wallet")
                             .frame(maxWidth: .infinity)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                             .padding(.vertical, 15)
                             .background(
@@ -77,7 +79,7 @@ struct WelcomeView: View {
                     Button(action: { }) {
                         Text("Recover Wallet")
                             .frame(maxWidth: .infinity)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .font(.system(size: 20, weight: .semibold, design: .rounded))
                             .padding(.vertical, 15)
                             .background(

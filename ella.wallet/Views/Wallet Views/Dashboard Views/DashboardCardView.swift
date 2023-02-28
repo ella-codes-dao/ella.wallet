@@ -15,30 +15,38 @@ struct DashboardCardView: View {
     var body: some View {
         VStack(spacing: 0) {
             ZStack {
-                Color.lightBackground
+                Image("wallet-card-bg")
+                    .resizable()
+                    .overlay {
+                        Color.black
+                            .opacity(0.7)
+                    }
                 
                 VStack(alignment: .leading) {
                     HStack {
                         Text(walletController.findProfile?.name ?? "Profile Not Created")
+                            .foregroundColor(.white)
                         Spacer()
                         Image(systemName: "qrcode.viewfinder")
                             .resizable()
                             .renderingMode(.template)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 22.0, height: 22.0)
-                            .foregroundColor(.walletPrimary)
+                            .foregroundColor(.white)
                     }
                     
                     Spacer()
                     
                     // Total Asset Value
                     Text(detailsVisible ? "$123.005" : "$xxx.xxx")
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
                     // Address
                     HStack {
                         Text(detailsVisible ? walletController.walletAddress : "******************")
+                            .foregroundColor(.white)
                         Spacer()
                         Button(action: { self.detailsVisible.toggle() }) {
                             Image(systemName: detailsVisible ? "eye.slash.fill" : "eye.fill")
@@ -46,7 +54,7 @@ struct DashboardCardView: View {
                                 .renderingMode(.template)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 22.0, height: 22.0)
-                                .foregroundColor(.walletPrimary)
+                                .foregroundColor(.white)
                         }
                     }
                 }
@@ -73,7 +81,7 @@ struct DashboardCardView: View {
                 .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
                 .padding(.horizontal, 20)
                 .sheet(isPresented: $showCreateProfileSheet) {
-                    CreateFindProfile()
+                    CreateFindProfile(dissmiss: $showCreateProfileSheet)
                         .padding(.top, 20)
                         .padding(.horizontal, 20)
                 }

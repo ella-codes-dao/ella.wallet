@@ -10,8 +10,9 @@ import Flow
 
 struct CreateFindProfile: View {
     @EnvironmentObject var walletController: WalletController
-    
+    @Binding var dissmiss: Bool
     @State private var profileName = ""
+    @State private var processing = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -33,19 +34,90 @@ struct CreateFindProfile: View {
             Spacer()
             
             Button(action: { createProfile() }) {
-                Text("Create Profile")
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(.white)
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
-                    .padding(.vertical, 15)
-                    .background(
-                        !profileName.isEmpty ? Color.walletPrimary : Color.grey50
-                    )
-                    .cornerRadius(20)
+                switch walletController.currentTxStatus {
+                case nil:
+                    Text("Create Profile")
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                        .padding(.vertical, 15)
+                        .background(
+                            !profileName.isEmpty ? Color.walletPrimary : Color.grey50
+                        )
+                        .cornerRadius(20)
+                case .unknown:
+                    HStack {
+                        Text("Transaction Submitted")
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .padding(.vertical, 15)
+                            .background(
+                                !profileName.isEmpty ? Color.walletPrimary : Color.grey50
+                            )
+                            .cornerRadius(20)
+                        
+                        Spacer()
+                        
+                        ProgressView()
+                    }
+                case .pending:
+                    HStack {
+                        Text("Transaction Pending")
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .padding(.vertical, 15)
+                            .background(
+                                !profileName.isEmpty ? Color.walletPrimary : Color.grey50
+                            )
+                            .cornerRadius(20)
+                        
+                        Spacer()
+                        
+                        ProgressView()
+                    }
+                case .executed:
+                    HStack {
+                        Text("Transaction Executed & Finalizing")
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .padding(.vertical, 15)
+                            .background(
+                                !profileName.isEmpty ? Color.walletPrimary : Color.grey50
+                            )
+                            .cornerRadius(20)
+                        
+                        Spacer()
+                        
+                        ProgressView()
+                    }
+                default:
+                    HStack {
+                        Text("There was an error")
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .padding(.vertical, 15)
+                            .background(
+                                !profileName.isEmpty ? Color.walletPrimary : Color.grey50
+                            )
+                            .cornerRadius(20)
+                        
+                        Spacer()
+                        
+                        ProgressView()
+                    }.onAppear(){
+                        walletController.currentTxId = nil
+                        walletController.currentTxStatus = nil
+                        processing.toggle()
+                    }
+                }
             }
             .padding(.horizontal, 20)
             .shadow(color: .white.opacity(0.25), radius: 8, y: 2)
-            .disabled(profileName.isEmpty)
+            .disabled(profileName.isEmpty || processing)
         }
     }
     
@@ -53,16 +125,24 @@ struct CreateFindProfile: View {
         Task {
             do {
                 let arguments: [Flow.Argument] = [.init(type: .string, value: .string(self.profileName))]
+                self.processing.toggle()
                 try await walletController.executeFlowTx(transaction: FindTransactions.createProfile.rawValue, flowArguments: arguments)
             } catch {
                 print(error)
             }
         }
+        
+        var _ = walletController.$currentTxStatus.sink { status in
+            if status == .sealed {
+                processing.toggle()
+                dissmiss.toggle()
+            }
+        }
     }
 }
 
-struct CreateFindProfile_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateFindProfile()
-    }
-}
+//struct CreateFindProfile_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateFindProfile()
+//    }
+//}

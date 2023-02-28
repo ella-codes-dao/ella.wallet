@@ -13,6 +13,9 @@ import CryptoKit
 import UIKit
 import RealHTTP
 import Flow
+import Combine
+import RealmSwift
+
 //import WalletConnectNetworking
 //import Web3Wallet
 
@@ -27,7 +30,9 @@ class WalletController: ObservableObject {
     @Published var findProfile: FINDProfile?
     @Published var currentTxId: Flow.ID?
     @Published var currentTxStatus: Flow.Transaction.Status?
+    @Published var realm = try? Realm()
     
+    @Published private var excutedTxCount = 0
     private let config = UserDefaults.standard
     private let keychain = CryptoKeychain()
     private var uuid: String
@@ -35,8 +40,6 @@ class WalletController: ObservableObject {
     init() {
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
             self.uuid = uuid
-            
-//            try? keychain.clear()
             
             if let _: P256.Signing.PrivateKey = try? keychain.get(label: "ella.wallet-account-key") {
                 self.accountInitiliazed = true
@@ -58,6 +61,57 @@ class WalletController: ObservableObject {
         }
         
         flow.configure(chainID: flowNetwork)
+        
+        var _ = Publishers.CombineLatest($currentTxId, $excutedTxCount).sink { tx, count in
+            if tx != nil {
+                Task {
+                    var checkTxCount = 0
+                    var txError = false
+                    while checkTxCount < 100 && (self.currentTxStatus != nil || txError) {
+                        checkTxCount += 1
+                        
+                        do {
+                            let txResult = try await flow.getTransactionResultById(id: tx!)
+                            
+                            print(txResult.status)
+                            await MainActor.run {
+                                self.currentTxStatus = txResult.status
+                            }
+                        } catch {
+                            await MainActor.run {
+                                self.currentTxStatus = nil
+                                self.currentTxId = nil
+                            }
+                            txError = true
+                        }
+                    }
+                    
+                    await MainActor.run {
+                        self.currentTxStatus = nil
+                        self.currentTxId = nil
+                    }
+                    
+                    if txError {
+                        // TODO: TX Error Handling
+                    }
+                }
+            }
+        }
+        
+//        do {
+//            try realm?.write {
+//                self.realm?.add(BLT)
+//                self.realm?.add(EMERALD)
+//                self.realm?.add(FLOW)
+//                self.realm?.add(FUSD)
+//                self.realm?.add(JRX)
+//                self.realm?.add(MY)
+//                self.realm?.add(REVV)
+//                self.realm?.add(USDC)
+//            }
+//        } catch {
+//            print(error)
+//        }
     }
     
 //    private func configureWalletConnect() {
@@ -99,14 +153,25 @@ class WalletController: ObservableObject {
         }
         
         // Generate & Save iCloud Account Key
+        if self.accountInitiliazed {
+            do {
+                try keychain.clear()
+            } catch {
+                print(error)
+                self.walletCreationError = .accountKeySaveError
+                self.walletCreationPhase = .error
+            }
+        }
+        
         let accountPrivateKey = P256.Signing.PrivateKey()
         let accountPublicKey = accountPrivateKey.publicKey.rawRepresentation.toHexString()
         do {
             try keychain.set(accountPrivateKey, label: "ella.wallet-account-key", sync: true)
         } catch {
-            print(error)
+            print("Acount Key: \(error)")
             
             await MainActor.run {
+                try? self.keychain.clear()
                 self.walletCreationError = .accountKeySaveError
                 self.walletCreationPhase = .error
             }
@@ -120,8 +185,9 @@ class WalletController: ObservableObject {
             devicePublicKey = devicePrivateKey.publicKey.rawRepresentation.toHexString()
             try keychain.set(devicePrivateKey, label: "ella.wallet-\(uuid)-key", sync: false)
         } catch {
-            print(error)
+            print("Device Key: \(error)")
             await MainActor.run {
+                try? self.keychain.clear()
                 self.walletCreationError = WalletCreationError.deviceKeyCreationError
                 self.walletCreationPhase = .error
             }
@@ -146,6 +212,7 @@ class WalletController: ObservableObject {
                 accountTx = try accountTxResponse.decode(WalletCreateResponse.self)
             default:
                 await MainActor.run {
+                    try? self.keychain.clear()
                     self.walletCreationError = .apiConntectionError
                     self.walletCreationPhase = .error
                 }
@@ -154,6 +221,7 @@ class WalletController: ObservableObject {
         } catch {
             print(error)
             await MainActor.run {
+                try? self.keychain.clear()
                 self.walletCreationError = .apiConntectionError
                 self.walletCreationPhase = .error
             }
@@ -180,6 +248,7 @@ class WalletController: ObservableObject {
                                         }
                                     } else {
                                         await MainActor.run {
+                                            try? self.keychain.clear()
                                             self.walletCreationPhase = .error
                                         }
                                         txError = true
@@ -195,6 +264,7 @@ class WalletController: ObservableObject {
                                 }
                             } else {
                                 await MainActor.run {
+                                    try? self.keychain.clear()
                                     self.walletCreationPhase = .error
                                 }
                                 txError = true
@@ -205,6 +275,7 @@ class WalletController: ObservableObject {
                     }
                 } else {
                     await MainActor.run {
+                        try? self.keychain.clear()
                         self.walletCreationPhase = .error
                     }
                     txError = true
@@ -223,11 +294,13 @@ class WalletController: ObservableObject {
         guard self.walletInitiliazed == true else {
             return
         }
-
-//        keychain.delete("ella.wallet-\(uuid)-key")
+        
         do {
-            try keychain.clear()
+            try keychain.delete(label: "ella.wallet-\(uuid)-key", type: .generic)
             
+            self.walletAddress = ""
+            self.findProfile = nil
+            config.removeObject(forKey: "walletAddress")
             self.walletInitiliazed = false
         } catch {
             print(error)
@@ -260,6 +333,7 @@ class WalletController: ObservableObject {
         let result = try await flow.sendTransaction(transaction: signedTX)
         
         await MainActor.run {
+            self.excutedTxCount += 1
             self.currentTxId = result
         }
         
