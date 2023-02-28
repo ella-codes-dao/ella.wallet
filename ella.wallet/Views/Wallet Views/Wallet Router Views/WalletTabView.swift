@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WalletTabView: View {
+    @EnvironmentObject var walletController: WalletController
+    
     var tabs = ["wallet", "ellaCard", "nft", "dapp"]
     
     @State var selectedTab = "wallet"
@@ -24,7 +26,7 @@ struct WalletTabView: View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             VStack(alignment: .leading) {
                 HStack {
-                    Button(action: { }) {
+                    Button(action: { walletController.showSettingsMenu.toggle() }) {
                         Image("settingsGear")
                             .resizable()
                             .renderingMode(.template)
@@ -39,7 +41,7 @@ struct WalletTabView: View {
                     Text("ella.wallet")
                 }
                 .padding(.top, 50)
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 30)
                 .padding(.bottom, 10)
                 
                 TabView(selection: $selectedTab) {
