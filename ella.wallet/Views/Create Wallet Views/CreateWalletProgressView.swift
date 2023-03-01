@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateWalletProgressView: View {
     @EnvironmentObject var walletController: WalletController
+    @Binding var IsOpen: Bool
     
     var body: some View {
         VStack {
@@ -18,7 +19,9 @@ struct CreateWalletProgressView: View {
             case .creatingFlowAccount:
                 Text("Creating Account on Flow...")
             case .walletCreated:
-                Text("Wallet Succesfully Created!")
+                Text("Wallet Succesfully Created!").onAppear() {
+                    IsOpen.toggle()
+                }
             default:
                 Text("Opps... Something went wrong, please go back and try again")
             }
@@ -30,11 +33,5 @@ struct CreateWalletProgressView: View {
                 ProgressView()
             }
         }
-    }
-}
-
-struct CreateWalletProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateWalletProgressView()
     }
 }

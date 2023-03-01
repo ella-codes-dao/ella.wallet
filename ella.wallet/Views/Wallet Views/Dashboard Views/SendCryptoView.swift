@@ -15,15 +15,18 @@ enum SendCryptoViewSelector: String, CaseIterable {
 struct SendCryptoView: View {
     @State var searchBarText = ""
     @State var selectedView: SendCryptoViewSelector = .recent
+    @Binding var isOpen: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
-            Image(systemName: "arrow.left")
-                .resizable()
-                .renderingMode(.template)
-                .aspectRatio(contentMode: .fit)
+            Button(action: { isOpen.toggle() }, label: {
+                Image(systemName: "arrow.left")
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+            })
                 .frame(width: 22.0, height: 22.0)
-                .padding(.bottom, 20)
+                .padding(.bottom, 15)
             
             Text("Send To")
                 .font(.title)

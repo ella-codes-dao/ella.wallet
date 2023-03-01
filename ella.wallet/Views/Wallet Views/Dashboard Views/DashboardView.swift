@@ -26,7 +26,7 @@ struct DashboardView: View {
                         .cornerRadius(10)
                 }
                 .sheet(isPresented: $sendCryptoSheetPresented) {
-                    SendCryptoView()
+                    SendCryptoView(isOpen: $sendCryptoSheetPresented)
                         .padding(.top, 10)
                         .padding(.horizontal, 20)
                 }
@@ -43,7 +43,7 @@ struct DashboardView: View {
                 }
             }
             .padding(.horizontal, 30)
-            .padding(.bottom, 50)
+            .padding(.bottom, 35)
             
             // Token List
             Section {
@@ -64,7 +64,8 @@ struct DashboardView: View {
                             Text("BUY")
                         }
                     }
-                    .padding(7)
+                    .padding(.vertical, 7)
+                    .padding(.horizontal, 10)
                     .background(Color.lightBackground)
                     .cornerRadius(20)
                     

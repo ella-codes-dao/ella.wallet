@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct DashboardCardView: View {
     @EnvironmentObject var walletController: WalletController
@@ -45,7 +46,7 @@ struct DashboardCardView: View {
                     
                     // Address
                     HStack {
-                        Text(detailsVisible ? walletController.walletAddress : "******************")
+                        Text(detailsVisible ? walletController.wallet!.walletAddress : "******************")
                             .foregroundColor(.white)
                         Spacer()
                         Button(action: { self.detailsVisible.toggle() }) {

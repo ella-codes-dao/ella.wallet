@@ -24,44 +24,20 @@ struct WalletTabView: View {
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
-            VStack(alignment: .leading) {
-                HStack {
-                    Button(action: { walletController.showSettingsMenu.toggle() }) {
-                        Image("settingsGear")
-                            .resizable()
-                            .renderingMode(.template)
-                            .imageScale(.large)
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 22.0, height: 22.0)
-                            .foregroundColor(.walletPrimary)
-                    }
-                    
-                    Spacer ()
-                    
-                    Text("ella.wallet")
-                }
-                .padding(.top, 50)
-                .padding(.horizontal, 30)
-                .padding(.bottom, 10)
+            TabView(selection: $selectedTab) {
+                DashboardView()
+                    .tag("wallet")
                 
-                TabView(selection: $selectedTab) {
-                    DashboardView()
-                        .tag("wallet")
-                    
-                    Text("ella.card View")
-                        .tag("ellaCard")
-                    
-                    Text("NFT View")
-                        .tag("nft")
-                    
-                    Text("DAPP View")
-                        .tag("dapp")
-                    
-//                    SettingsView()
-//                        .tag("settingsGear")
-                }
-                .padding(.horizontal, 20)
+                Text("ella.card View")
+                    .tag("ellaCard")
+                
+                Text("NFT View")
+                    .tag("nft")
+                
+                DappSelectorView()
+                    .tag("dapp")
             }
+            .padding(.horizontal, 20)
             
             // custom tab bar
             HStack(spacing: 0) {

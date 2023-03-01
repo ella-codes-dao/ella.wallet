@@ -16,3 +16,7 @@ enum WalletCreationError: Error {
     case accountKeySaveError
     case deviceKeySaveError
 }
+
+enum WalletError: Error {
+    case walletNotSelected
+}

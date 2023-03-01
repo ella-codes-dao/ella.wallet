@@ -6,17 +6,16 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct RouterView: View {
     @EnvironmentObject var walletController: WalletController
     
     var body: some View {
-        Group {
-            if (walletController.walletInitiliazed) {
-                WalletTabView()
-            } else {
-                WelcomeView()
-            }
+        if walletController.wallet == nil {
+            WelcomeView()
+        } else {
+            WalletRouterView()
         }
     }
 }

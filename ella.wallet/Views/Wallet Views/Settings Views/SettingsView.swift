@@ -11,51 +11,25 @@ import CachedAsyncImage
 struct SettingsView: View {
     @EnvironmentObject var walletController: WalletController
     
+    @State var switchWalletsPresented = false
+    
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack {
-                    if walletController.findProfile?.avatar != nil {
-                        CachedAsyncImage(url: URL(string: walletController.findProfile?.avatar ?? ""), scale: 2) { image in
-                            image
-                                .resizable()
-                                .renderingMode(.template)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 66.0, height: 66.0)
-                        } placeholder: {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                        }
-                    } else {
-                        Image(systemName: "person.circle")
-                            .resizable()
-                            .renderingMode(.template)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 66.0, height: 66.0)
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text(walletController.findProfile?.name ?? walletController.walletAddress)
-                            .font(.title2)
-                            .lineLimit(1)
-                        Text("Some other info probably")
-                            .font(.subheadline)
-                    }
+        VStack {
+            List {
+                Button {
+                    switchWalletsPresented.toggle()
+                    walletController.showSettingsMenu.toggle()
+                } label: {
+                    Text("Switch Wallets")
                 }
-                .padding(.horizontal, 30)
-                
-                List {
-                    Button(action: { walletController.signOut() }) {
-                        Text("Sign Out")
-                    }
+
+                Button(action: { walletController.signOut() }) {
+                    Text("Sign Out")
                 }
             }
+            .sheet(isPresented: $switchWalletsPresented) {
+                SwitchWalletView(isOpen: $switchWalletsPresented)
+            }
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
     }
 }

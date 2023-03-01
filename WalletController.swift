@@ -15,103 +15,81 @@ import RealHTTP
 import Flow
 import Combine
 import RealmSwift
+import IceCream
 
 //import WalletConnectNetworking
 //import Web3Wallet
 
 class WalletController: ObservableObject {
+    @Published var selectedDAPP: selectedDAPP = .none
+    @Published var showSettingsMenu = false
     @Published var flowNetwork: Flow.ChainID = .testnet
-    @Published var accountInitiliazed = false
-    @Published var walletInitiliazed = false
     @Published var walletCreationPhase: WalletCreationPhase = .notStarted
     @Published var walletCreationError: WalletCreationError?
     @Published var recoveryPhraseArray = [String]()
-    @Published var walletAddress = ""
     @Published var findProfile: FINDProfile?
     @Published var currentTxId: Flow.ID?
     @Published var currentTxStatus: Flow.Transaction.Status?
-    @Published var realm = try? Realm()
+    @Published var realm: Realm?
+    @Published var walletGroup = WalletGroup()
+    @Published var wallet: Wallet?
+    @Published var deviceUUID: String
+    @Published var pendingEnablement = false
     
     @Published private var excutedTxCount = 0
     private let config = UserDefaults.standard
     private let keychain = CryptoKeychain()
-    private var uuid: String
+    
     
     init() {
         if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-            self.uuid = uuid
+            self.deviceUUID = uuid
             
-            if let _: P256.Signing.PrivateKey = try? keychain.get(label: "ella.wallet-account-key") {
-                self.accountInitiliazed = true
+            do {
+                self.realm = try Realm()
                 
-                if let _: SecureEnclave.P256.Signing.PrivateKey = try? keychain.get(label: "ella.wallet-\(uuid)-key") {
-                    if let keychainAddress = config.object(forKey: "walletAddress") as? String {
-                        self.walletAddress = keychainAddress
+//                try keychain.clear()
+//
+                print("Realm is located at:", self.realm?.configuration.fileURL!)
+//                try self.realm?.write {
+//                    // Delete all objects from the realm.
+//                    self.realm?.deleteAll()
+//                }
+                
+                if let walletGrp = self.realm?.objects(WalletGroup.self).first {
+                    if let device = self.realm?.objects(Device.self).first(where: ({$0.deviceUUID == self.deviceUUID})) {
+                        if !device.enabled { self.pendingEnablement = true}
+                        self.wallet = device.wallet.first
                     }
-                    self.walletInitiliazed = true
-
-                    Task {
-                        await getFindProfile()
+                    self.walletGroup = walletGrp
+                }
+                
+                let _ = self.realm?.objects(WalletGroup.self).observe { (changes: RealmCollectionChange) in
+                    var group = WalletGroup()
+                    switch changes {
+                    case .update(_, _, _, _):
+                        if let walletGrp = self.realm?.objects(WalletGroup.self).first {
+                            if let device = self.realm?.objects(Device.self).first(where: ({$0.deviceUUID == self.deviceUUID})) {
+                                if !device.enabled { self.pendingEnablement = true}
+                                self.wallet = device.wallet.first
+                            }
+                            group = walletGrp
+                        }
+                    case .initial(_):
+                        self.walletGroup = group
+                    case .error(let error):
+                        print(error)
                     }
                 }
+            } catch {
+                print(error)
             }
         } else {
             // TODO: Handle UUID not being readable
-            self.uuid = ""
+            self.deviceUUID = ""
         }
         
         flow.configure(chainID: flowNetwork)
-        
-        var _ = Publishers.CombineLatest($currentTxId, $excutedTxCount).sink { tx, count in
-            if tx != nil {
-                Task {
-                    var checkTxCount = 0
-                    var txError = false
-                    while checkTxCount < 100 && (self.currentTxStatus != nil || txError) {
-                        checkTxCount += 1
-                        
-                        do {
-                            let txResult = try await flow.getTransactionResultById(id: tx!)
-                            
-                            print(txResult.status)
-                            await MainActor.run {
-                                self.currentTxStatus = txResult.status
-                            }
-                        } catch {
-                            await MainActor.run {
-                                self.currentTxStatus = nil
-                                self.currentTxId = nil
-                            }
-                            txError = true
-                        }
-                    }
-                    
-                    await MainActor.run {
-                        self.currentTxStatus = nil
-                        self.currentTxId = nil
-                    }
-                    
-                    if txError {
-                        // TODO: TX Error Handling
-                    }
-                }
-            }
-        }
-        
-//        do {
-//            try realm?.write {
-//                self.realm?.add(BLT)
-//                self.realm?.add(EMERALD)
-//                self.realm?.add(FLOW)
-//                self.realm?.add(FUSD)
-//                self.realm?.add(JRX)
-//                self.realm?.add(MY)
-//                self.realm?.add(REVV)
-//                self.realm?.add(USDC)
-//            }
-//        } catch {
-//            print(error)
-//        }
     }
     
 //    private func configureWalletConnect() {
@@ -135,9 +113,17 @@ class WalletController: ObservableObject {
     }
     
     public func createWallet(password: String) async {
+        // Create Object to store in private DB
+        let wallet = Wallet(flowChain: flowNetwork, walletAddress: "", accountUUID: UUID().uuidString)
+        let device = Device(accountUUID: wallet.walletUUID, deviceUUID: self.deviceUUID, deviceName: await UIDevice.current.name)
+        device.enabled = true
+        wallet.devices.append(device)
+        
+        // Set phase
         await MainActor.run {
             self.walletCreationPhase = .generatingAccountAndDeviceKeys
         }
+        
         // Generate Recovery Key
         var recoveryPublicKey: String
         do {
@@ -153,20 +139,10 @@ class WalletController: ObservableObject {
         }
         
         // Generate & Save iCloud Account Key
-        if self.accountInitiliazed {
-            do {
-                try keychain.clear()
-            } catch {
-                print(error)
-                self.walletCreationError = .accountKeySaveError
-                self.walletCreationPhase = .error
-            }
-        }
-        
         let accountPrivateKey = P256.Signing.PrivateKey()
         let accountPublicKey = accountPrivateKey.publicKey.rawRepresentation.toHexString()
         do {
-            try keychain.set(accountPrivateKey, label: "ella.wallet-account-key", sync: true)
+            try keychain.set(accountPrivateKey, label: wallet.accountKey, sync: true)
         } catch {
             print("Acount Key: \(error)")
             
@@ -183,7 +159,7 @@ class WalletController: ObservableObject {
         do {
             let devicePrivateKey = try SecureEnclave.P256.Signing.PrivateKey()
             devicePublicKey = devicePrivateKey.publicKey.rawRepresentation.toHexString()
-            try keychain.set(devicePrivateKey, label: "ella.wallet-\(uuid)-key", sync: false)
+            try keychain.set(devicePrivateKey, label: device.deviceKey, sync: false)
         } catch {
             print("Device Key: \(error)")
             await MainActor.run {
@@ -242,10 +218,7 @@ class WalletController: ObservableObject {
                             for event in tx.events {
                                 if event.type == "flow.AccountCreated" {
                                     if let address = event.payload.fields?.value.toEvent()?.fields[0].value.decode() {
-                                        config.set(address as? String, forKey: "walletAddress")
-                                        await MainActor.run {
-                                            self.walletAddress = (address as? String)!
-                                        }
+                                        wallet.walletAddress = (address as? String)!
                                     } else {
                                         await MainActor.run {
                                             try? self.keychain.clear()
@@ -259,12 +232,27 @@ class WalletController: ObservableObject {
                             }
                             
                             if eventFound {
-                                await MainActor.run {
-                                    self.walletCreationPhase = .walletCreated
+                                do {
+                                    try await MainActor.run {
+                                        try realm?.write {
+                                            self.walletGroup.wallets.append(wallet)
+                                            self.realm?.add(self.walletGroup, update: .modified)
+                                        }
+                                        
+                                        self.walletCreationPhase = .walletCreated
+                                        self.wallet = wallet
+                                    }
+                                } catch {
+                                    print(error)
+                                    try? self.keychain.clear()
+                                    await MainActor.run {
+                                        self.walletCreationPhase = .error
+                                    }
+                                    txError = true
                                 }
                             } else {
+                                try? self.keychain.clear()
                                 await MainActor.run {
-                                    try? self.keychain.clear()
                                     self.walletCreationPhase = .error
                                 }
                                 txError = true
@@ -282,34 +270,47 @@ class WalletController: ObservableObject {
                 }
             }
         }
+    }
+    
+    public func linkWallet() {
         
-        await MainActor.run {
-            self.walletCreationPhase = .walletCreated
-            self.walletInitiliazed = true
-        }
     }
     
     
     public func signOut() {
-        guard self.walletInitiliazed == true else {
-            return
-        }
-        
         do {
-            try keychain.delete(label: "ella.wallet-\(uuid)-key", type: .generic)
+            guard let device = self.wallet?.devices.first(where: ({$0.deviceUUID == self.deviceUUID})) else {
+                return
+            }
             
-            self.walletAddress = ""
+            guard let wallet = self.wallet else {
+                return
+            }
+            
+            try keychain.delete(label: device.deviceUUID, type: .generic)
+            self.showSettingsMenu = false
             self.findProfile = nil
-            config.removeObject(forKey: "walletAddress")
-            self.walletInitiliazed = false
+            self.wallet = nil
+            
+            try self.realm?.write {
+                if wallet.devices.count == 1 {
+                    try keychain.delete(label: self.wallet?.accountKey ?? "", type: .key)
+                    wallet.isDeleted = true
+                }
+                
+                device.isDeleted = true
+            }
         } catch {
             print(error)
         }
     }
     
     public func executeFlowTx(transaction: String, flowArguments: [Flow.Argument]) async throws {
-        let walletAddr = Flow.Address(hex: self.walletAddress)
-        let signers = try await EllaSigner(address: walletAddress)
+        guard let wallet = self.wallet else {
+            throw WalletError.walletNotSelected
+        }
+        let signers = try await EllaSigner(wallet: wallet)
+        let walletAddr = Flow.Address(hex: wallet.walletAddress)
         var unsignedTx = try await flow.buildTransaction{
             cadence {
                 transaction
@@ -340,49 +341,15 @@ class WalletController: ObservableObject {
         print(result.hex)
     }
     
-    private func getFindProfile() async {
-        let profile = await reverseLookupProfile(address: self.walletAddress)
+    private func getFindProfile() async throws {
+        guard let wallet = self.wallet else {
+            throw WalletError.walletNotSelected
+        }
+        
+        let profile = await reverseLookupProfile(address: wallet.walletAddress)
         
         await MainActor.run {
             self.findProfile = profile
         }
     }
-
-//    internal func printResultCode(resultCode: OSStatus) {
-//            // See: https://www.osstatus.com/
-//            switch resultCode {
-//            case errSecSuccess:
-//                print("Keychain Status: No error.")
-//            case errSecUnimplemented:
-//                print("Keychain Status: Function or operation not implemented.")
-//            case errSecIO:
-//                print("Keychain Status: I/O error (bummers)")
-//            case errSecOpWr:
-//                print("Keychain Status: File already open with with write permission")
-//            case errSecParam:
-//                print("Keychain Status: One or more parameters passed to a function where not valid.")
-//            case errSecAllocate:
-//                print("Keychain Status: Failed to allocate memory.")
-//            case errSecUserCanceled:
-//                print("Keychain Status: User canceled the operation.")
-//            case errSecBadReq:
-//                print("Keychain Status: Bad parameter or invalid state for operation.")
-//            case errSecInternalComponent:
-//                print("Keychain Status: Internal Component")
-//            case errSecNotAvailable:
-//                print("Keychain Status: No keychain is available. You may need to restart your computer.")
-//            case errSecDuplicateItem:
-//                print("Keychain Status: The specified item already exists in the keychain.")
-//            case errSecItemNotFound:
-//                print("Keychain Status: The specified item could not be found in the keychain.")
-//            case errSecInteractionNotAllowed:
-//                print("Keychain Status: User interaction is not allowed.")
-//            case errSecDecode:
-//                print("Keychain Status: Unable to decode the provided data.")
-//            case errSecAuthFailed:
-//                print("Keychain Status: The user name or passphrase you entered is not correct.")
-//            default:
-//                print("Keychain Status: Unknown. (\(resultCode))")
-//            }
-//        }
 }

@@ -11,6 +11,7 @@ struct WelcomeView: View {
     @EnvironmentObject var walletController: WalletController
     @State var showAccountExistsAlert = false
     @State var proceedToCreateAccount = false
+    @State var showLinkAccountPage = false
     
     var body: some View {
         NavigationStack {
@@ -61,7 +62,7 @@ struct WelcomeView: View {
                     
                     
                     Button {
-                        
+                        showLinkAccountPage.toggle()
                     } label: {
                         Text("Link To Existing Wallet")
                             .frame(maxWidth: .infinity)
@@ -93,21 +94,24 @@ struct WelcomeView: View {
                 .padding([.horizontal, .vertical], 20)
                 .padding(.top, 20)
             }
-            .alert("Warning! \n\n An ella.wallet Account Key already exists in your iCloud Keychain. \n\n ella.wallet currently only supports one wallet per iCloud Account \n\n Proceeding to create a new wallet will override your current Account Key.", isPresented: $showAccountExistsAlert) {
+            .alert("An ella.wallet Account Key already exists in your iCloud Keychain, did you mean to link your existing wallet? \n\n If you create a new wallet you will be able to switch between and manage your existing wallets inside the app.", isPresented: $showAccountExistsAlert) {
                 Button("Create Wallet", role: .destructive) { proceedToCreateAccount.toggle() }
                 Button("Link Wallet", role: .cancel) { showAccountExistsAlert.toggle() }
             }
             .navigationDestination(isPresented: $proceedToCreateAccount) {
-                CreateWallet()
+                CreateWallet(isOpen: $proceedToCreateAccount)
+            }
+            .navigationDestination(isPresented: $showLinkAccountPage) {
+                LinkWalletView()
             }
         }
     }
     
     func createWallet() {
-        if walletController.accountInitiliazed {
-            showAccountExistsAlert.toggle()
-        } else {
+        if walletController.walletGroup.wallets.count == 0 {
             proceedToCreateAccount.toggle()
+        } else {
+            showAccountExistsAlert.toggle()
         }
     }
 }

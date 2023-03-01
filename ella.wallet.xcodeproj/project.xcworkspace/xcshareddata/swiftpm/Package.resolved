@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "icecream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/leoz/IceCream",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e3560606b2112fbce6f35008c291977951054c69"
+      }
+    },
+    {
       "identity" : "mnemonicswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zcash-hackworks/MnemonicSwift",

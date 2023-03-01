@@ -10,74 +10,55 @@ import Flow
 import CryptoKeychain
 import CryptoKit
 import UIKit
+import RealmSwift
 
-func EllaSigner(address: String) async throws -> [EllaSignerKey] {
-    guard let accountSigner = await EllaSignerKey(addr: address, type: .accountKey) else {
+func EllaSigner(wallet: Wallet) async throws -> [AnyFlowSigner] {
+    guard let accountSigner = await EllaAccountSigner(wallet: wallet) else {
         throw EllaSignerErrors.unableToGetAccountKey
     }
     
-    guard let deviceSigner = await EllaSignerKey(addr: address, type: .deviceKey) else {
+    guard let uuid = await UIDevice.current.identifierForVendor?.uuidString else {
+        throw EllaSignerErrors.unableToGetDeviceUUID
+    }
+    
+    guard let device = wallet.devices.first(where: ({ $0.deviceUUID == uuid })) else {
+        throw EllaSignerErrors.unableToGetDeviceKey
+    }
+    
+    guard let deviceSigner = await EllaDeviceSigner(wallet: wallet, keyId: device.deviceKey) else {
         throw EllaSignerErrors.unableToGetDeviceUUID
     }
     
     return [accountSigner, deviceSigner]
 }
 
-struct EllaSignerKey: FlowSigner {
-    private var keyType: EllaKeyType
+struct EllaAccountSigner: FlowSigner {
+    private var wallet: Wallet
     
     var address: Flow.Address
     
     var keyIndex: Int = 0
     
     func sign(transaction: Flow.Transaction, signableData: Data) async throws -> Data {
-        var signedMsg: Data
-        switch keyType {
-        case .accountKey:
-            guard let key: P256.Signing.PrivateKey = try CryptoKeychain().get(label: "ella.wallet-account-key") else {
-                throw EllaSignerErrors.unableToGetAccountKey
-            }
-            
-            signedMsg = try key.signature(for: signableData).rawRepresentation
-        case .deviceKey:
-            guard let uuid = await UIDevice.current.identifierForVendor?.uuidString else {
-                throw EllaSignerErrors.unableToGetDeviceUUID
-            }
-            
-            guard let key: SecureEnclave.P256.Signing.PrivateKey = try CryptoKeychain().get(label: "ella.wallet-\(uuid)-key") else {
-                throw EllaSignerErrors.unableToGetDeviceUUID
-            }
-            
-            signedMsg = try key.signature(for: signableData).rawRepresentation
+        guard let key: P256.Signing.PrivateKey = try CryptoKeychain().get(label: wallet.accountKey) else {
+            throw EllaSignerErrors.unableToGetAccountKey
         }
+        
+        let signedMsg = try key.signature(for: signableData).rawRepresentation
         
         return signedMsg
     }
     
-    init?(addr: String, type: EllaKeyType) async {
-        self.keyType = type
-        self.address = Flow.Address(hex: addr)
+    init?(wallet: Wallet) async {
+        self.wallet = wallet
+        self.address = Flow.Address(hex: wallet.walletAddress)
         
         do {
-            var publicKeyValue: String
-            switch type {
-            case .accountKey:
-                guard let key: P256.Signing.PrivateKey = try CryptoKeychain().get(label: "ella.wallet-account-key") else {
-                    throw EllaSignerErrors.unableToGetAccountKey
-                }
-                
-                publicKeyValue = key.publicKey.rawRepresentation.toHexString()
-            case .deviceKey:
-                guard let uuid = await UIDevice.current.identifierForVendor?.uuidString else {
-                    throw EllaSignerErrors.unableToGetDeviceUUID
-                }
-                
-                guard let key: SecureEnclave.P256.Signing.PrivateKey = try CryptoKeychain().get(label: "ella.wallet-\(uuid)-key") else {
-                    throw EllaSignerErrors.unableToGetDeviceUUID
-                }
-                
-                publicKeyValue = key.publicKey.rawRepresentation.toHexString()
+            guard let key: P256.Signing.PrivateKey = try CryptoKeychain().get(label: wallet.accountKey) else {
+                throw EllaSignerErrors.unableToGetAccountKey
             }
+            
+            let publicKeyValue = key.publicKey.rawRepresentation.toHexString()
             
             let account = try await flow.getAccountAtLatestBlock(address: self.address)
             for key in account.keys {
@@ -92,10 +73,51 @@ struct EllaSignerKey: FlowSigner {
     }
 }
 
-enum EllaKeyType: String {
-    case accountKey
-    case deviceKey
+struct EllaDeviceSigner: FlowSigner {
+    private var deviceKey: String
+    
+    var address: Flow.Address
+    
+    var keyIndex: Int = 0
+    
+    func sign(transaction: Flow.Transaction, signableData: Data) async throws -> Data {
+        guard let key: SecureEnclave.P256.Signing.PrivateKey = try CryptoKeychain().get(label: deviceKey) else {
+            throw EllaSignerErrors.unableToGetDeviceUUID
+        }
+        
+        let signedMsg = try key.signature(for: signableData).rawRepresentation
+        
+        return signedMsg
+    }
+    
+    init?(wallet: Wallet, keyId: String) async {
+        self.deviceKey = keyId
+        self.address = Flow.Address(hex: wallet.walletAddress)
+        
+        do {
+            guard let key: P256.Signing.PrivateKey = try CryptoKeychain().get(label: deviceKey) else {
+                throw EllaSignerErrors.unableToGetAccountKey
+            }
+            
+            let publicKeyValue = key.publicKey.rawRepresentation.toHexString()
+            
+            let account = try await flow.getAccountAtLatestBlock(address: self.address)
+            for key in account.keys {
+                if publicKeyValue == key.publicKey.hex {
+                    self.keyIndex = key.index
+                }
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+    }
 }
+
+protocol AnyFlowSigner: FlowSigner {}
+
+extension EllaAccountSigner: AnyFlowSigner {}
+extension EllaDeviceSigner: AnyFlowSigner {}
 
 enum EllaSignerErrors: Error {
     case unableToGetAccountKey
