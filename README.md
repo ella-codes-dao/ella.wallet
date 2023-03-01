@@ -49,93 +49,15 @@
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com)
+ella.wallet is a blockchain wallet that prioritizes device security while supporting cross-chain transactions. Its multi-device privacy feature ensures you have full control over your assets, even if you manage your cryptocurrency portfolio on multiple devices.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+Built on the Flow blockchain, ella.wallet is designed to meet the needs of DAO members, offering features tailored to their requirements. This includes the ability to easily vote on proposals, participate in governance decisions, and manage DAO tokens.
 
-### Built With
-
-- [![React][react.js]][react-url]
-- [![Vue][vue.js]][vue-url]
-- [![Angular][angular.io]][angular-url]
-- [![Svelte][svelte.dev]][svelte-url]
-- [![Laravel][laravel.com]][laravel-url]
-- [![Bootstrap][bootstrap.com]][bootstrap-url]
-- [![JQuery][jquery.com]][jquery-url]
-
-Ella.wallet is a self-custodial blockchain wallet that has been specifically designed to support cross-chain transactions and multi-device support, making it incredibly convenient and user-friendly. This wallet is built on the Flow Blockchain, which is known for its scalability, low transaction fees, and its ability to handle high volumes of transactions, making it an excellent choice for anyone who wants to use cryptocurrency for everyday transactions.
-
-One of the main features of Ella.wallet is its support for cross-chain transactions. This means that users can easily transfer cryptocurrencies between different blockchains, making it incredibly convenient for anyone who wants to use multiple cryptocurrencies for their day-to-day transactions. Additionally, Ella.wallet also supports multi-device support, allowing users to access their wallets from different devices and platforms, making it incredibly easy to manage their cryptocurrencies.
-
-Ella.wallet is also designed with the needs of DAO (decentralized autonomous organization) membership in mind. This means that it offers features that are specifically tailored to the needs of DAO members, such as the ability to easily vote on proposals, participate in governance decisions, and manage their DAO tokens.
-
-For bankless individuals, Ella.wallet offers an excellent solution for accessing and managing their cryptocurrencies without the need for traditional banking services. This can be particularly beneficial for people who live in areas with limited access to banking services or for those who prefer to keep their financial transactions private and secure.
-
-Overall, Ella.wallet is an excellent choice for anyone who wants to use cryptocurrency for everyday transactions, participate in DAO governance, and manage their cryptocurrency holdings securely and conveniently.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/ella-codes-dao/ella.wallet.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
-   ```
+For individuals without access to banking services, ella.wallet provides an excellent solution to access and manage cryptocurrencies without relying on traditional banking institutions. This is especially beneficial for those living in areas with limited access to banking services or for those seeking to keep their financial transactions private and secure.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -143,13 +65,19 @@ This is an example of how to list things you need to use the software and how to
 
 ## Usage
 
-At Ella.wallet, we believe that security should be simple and easy to understand. That's why we've designed our wallet with a focus on everyday usage while still ensuring that your assets are always secure.
+At ella.wallet, we understand that security should be both easy to use and easy to comprehend. For this reason, we have designed our wallet with a focus on everyday usage, while still ensuring that your assets are always secure.
 
-Our wallet uses a multi-key system, with both device and account keys assigned a weight of 500. This means that if you need to remove a device from your wallet, you can easily do so without compromising the security of your assets. Additionally, access to your wallet requires both the device and account keys, adding an extra layer of protection to keep your assets secure.
+Our wallet uses a multi-key system, that starts with a recovery key, this key is the only key with a weight of 1000, and is never stored on your device. Next, we create account and device keys with equal weights of 500.
 
-To further enhance security, we also offer the option of adding an account key to your wallet. This eliminates the need for a recovery key to be stored on any devices, which helps boost the overall security of your assets.
+This means that if you need to remove a device from your wallet, you can do so easily without compromising the security of your assets. Additionally, access to your wallet requires both the device and account keys, adding an extra layer of protection to keep your assets safe and secure.This eliminates the need for a recovery key to be stored on any device, which helps to improve the overall security of your assets.
 
-In the event that you lose a device or your account key is compromised, our recovery process is simple and straightforward. You'll need both the original recovery key and a password to regain access to your assets, ensuring that they are always safe and secure.
+If you lose a device or your account key is compromised, our recovery process is simple. You will need both the original recovery phrase and a password you created to regain access to your assets, ensuring that they remain secure at all times.
+
+ella.wallet has a unique “bankless bank feature” called ella.card which manages digital assets without relying on a traditional bank account. With this feature, users can store and manage digital assets, such as USDC, and use them as a funding source for the upcoming Ella Card, which is not a traditional credit card as there is no traditional bank account involved.
+
+The ella.card accessed through the app utilizes the new authentication account capabilities on the Flow Blockchain to authorize transactions and provide users with a credit-like experience, but without the risk of accumulating debt. To ensure that the transaction clears, we need to verify that we have the capability and that the end-point user has sufficient funds available. When a purchase is made, the app immediately fronts the required funds, but the transaction is promptly settled through a blockchain transaction that pulls the necessary funds from the user's wallet to repay the fronted amount. If, for any reason, the capability is removed or an earlier transaction fails to process, the ella.card is temporarily disabled until the issue is resolved.
+
+[ Hackathon Update - We were unable to complete the smart contracts for ella.card and will submit/launch ella.card specifically during the next hackathon, ella.card data in app is currently simulated ]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,37 +86,67 @@ In the event that you lose a device or your account key is compromised, our reco
 ## Roadmap
 
 - [x] Wallet creation using recovery key and account/devices keys
-- [ ] Account recovery using recovery key
+- [x] Account recovery using recovery key
 - [ ] Wallet Connect integration (FCL Auth/Sign Transactions)
-- [ ] Ability to remove account/device keys from wallet allowing for multi device control access control
+- [x] Ability to remove account/device keys from wallet allowing for multi device control access control
 - [ ] USDC "Bridge" Accounts (Integration with the Circle APIs to allow for cross bridge sending and receiving of USDC)
-- [ ] NFT Catalog Integration
-- [ ] Multiple Wallet Support (allow each device/app to support multiple wallets simultaneously)
+- [x] NFT Catalog Integration
+- [x] Multiple Wallet Support (allow each device/app to support multiple wallets simultaneously)
 - [ ] ella.card (US/EU card program linked to USDC Bridge account)
 
 See the [open issues](https://github.com/ella-codes-dao/ella.wallet/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Screenshots
+
+<p align="middle">
+  <a href="https://github.com/ella-codes-dao/ella.wallet">
+    <img src="images/1.png" alt="Logo" width="120" height="259">
+  </a>
+
+  <a href="https://github.com/ella-codes-dao/ella.wallet">
+    <img src="images/2.png" alt="Logo" width="120" height="259">
+  </a>
+
+  <a href="https://github.com/ella-codes-dao/ella.wallet">
+    <img src="images/3.png" alt="Logo" width="120" height="259">
+  </a>
+</p>
+
+<p align="middle">
+  <a href="https://github.com/ella-codes-dao/ella.wallet">
+    <img src="images/4.png" alt="Logo" width="120" height="259">
+  </a>
+
+  <a href="https://github.com/ella-codes-dao/ella.wallet">
+    <img src="images/5.png" alt="Logo" width="120" height="259">
+  </a>
+</p>
+
 <!-- CONTRIBUTING -->
 
 ## Contributing
 
-At Ella.Wallet, we are committed to building a strong community of users and developers who are passionate about cryptocurrency and the potential of blockchain technology. We believe that collaboration is essential to building innovative solutions that meet the needs of our users, which is why we welcome contributions from our community members.
+At ella.wallet, we are committed to building a robust community of users and developers who are passionate about cryptocurrency and the potential of blockchain technology. We believe that collaboration is essential to creating innovative solutions that meet the needs of our users. That's why we welcome contributions from all community members.
 
-If you are interested in contributing to the development of Ella.Wallet, we encourage you to join our dedicated Discord channel for community members and developers. This channel is a space for sharing ideas, collaborating on projects, and discussing the latest developments in the world of cryptocurrency.
+If you're interested in contributing to the development of ella.wallet, we encourage you to join our dedicated Discord channel for community members and developers. This channel is an open space for sharing ideas, collaborating on projects, and discussing the latest developments in the world of cryptocurrency.
 
-As a community-driven project, we value the input and feedback of our users. Whether you have a suggestion for a new feature, a bug to report, or simply want to share your thoughts on how we can improve the user experience, we want to hear from you. Our Discord channel is a great place to connect with other community members and share your ideas with the Ella.wallet development team.
+As a community-driven project, we value the input and feedback of our users. Whether you have a suggestion for a new feature, need to report a bug, or want to share your thoughts on how we can improve the user experience, we want to hear from you! Our Discord channel is the perfect place to connect with other community members and share your ideas with the ella.wallet development team.
 
-We are dedicated to creating a welcoming and inclusive community that fosters collaboration and creativity. Whether you are an experienced developer or simply passionate about cryptocurrency, we welcome your contributions and look forward to working together to build the future of blockchain technology.
+We're dedicated to creating a welcoming and inclusive community that fosters collaboration and creativity. Whether you're an experienced developer or simply passionate about cryptocurrency, we welcome your contributions and look forward to working together to build the future of blockchain technology.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## TLDR
+
+ella.wallet is a secure and user-friendly blockchain wallet with cross-chain transaction support, built on the scalable Flow blockchain. It offers tailored features for DAO members, a multi-key system, and a simple recovery process. Additionally, it provides a "bankless bank account" for managing digital assets without relying on traditional bank accounts. The upcoming Ella.Card offers a credit-like experience without the risk of debt accumulation. Contributions are welcome through the Discord channel.
 
 <!-- LICENSE -->
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the ELV2 License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -199,19 +157,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 - Brian Pistone - Lead Developer - brian@ella.holdings
 - Ashton Mercer - Development - ashton@ella.holdings
 - Andrew Van Dyke - Development - andrew@ella.holdings
-- Eric Merritt - Development - eric@ella.holdings
 
 Project Link: [https://github.com/ella-codes-dao/ella.wallet](https://github.com/ella-codes-dao/ella.wallet)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGMENTS -->
-
-## Acknowledgments
-
-- []()
-- []()
-- []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
