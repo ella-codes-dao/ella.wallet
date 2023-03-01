@@ -102,25 +102,25 @@ See the [open issues](https://github.com/ella-codes-dao/ella.wallet/issues) for 
 
 <p align="middle">
   <a href="https://github.com/ella-codes-dao/ella.wallet">
-    <img src="images/1.png" alt="Logo" width="120" height="259">
+    <img src="images/1.png" alt="Logo" width="240" height="519">
   </a>
 
   <a href="https://github.com/ella-codes-dao/ella.wallet">
-    <img src="images/2.png" alt="Logo" width="120" height="259">
+    <img src="images/2.png" alt="Logo" width="240" height="519">
   </a>
 
   <a href="https://github.com/ella-codes-dao/ella.wallet">
-    <img src="images/3.png" alt="Logo" width="120" height="259">
+    <img src="images/3.png" alt="Logo" width="240" height="519">
   </a>
 </p>
 
 <p align="middle">
   <a href="https://github.com/ella-codes-dao/ella.wallet">
-    <img src="images/4.png" alt="Logo" width="120" height="259">
+    <img src="images/4.png" alt="Logo" width="240" height="519">
   </a>
 
   <a href="https://github.com/ella-codes-dao/ella.wallet">
-    <img src="images/5.png" alt="Logo" width="120" height="259">
+    <img src="images/5.png" alt="Logo" width="240" height="519">
   </a>
 </p>
 
